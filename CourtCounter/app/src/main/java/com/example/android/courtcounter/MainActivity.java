@@ -10,12 +10,14 @@ import org.w3c.dom.Text;
 public class MainActivity extends AppCompatActivity {
 
     int scoreTeamA = 0;
+    int scoreTeamB = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         displayForTeamA(scoreTeamA);
+        displayForTeamB(scoreTeamB);
     }
 
     public void displayForTeamA(int score){
@@ -23,16 +25,33 @@ public class MainActivity extends AppCompatActivity {
         scoreView.setText(String.valueOf(score));
     }
 
-    public void addThreePoints(View view){
+    public void displayForTeamB(int score){
+        TextView scoreView = (TextView) findViewById(R.id.team_b_score);
+        scoreView.setText(String.valueOf(score));
+    }
+
+    public void addThreePointsA(View view){
         scoreTeamA += 3;
         displayForTeamA(scoreTeamA);
     }
-    public void addTwoPoints(View view){
+    public void addTwoPointsA(View view){
         scoreTeamA += 2;
         displayForTeamA(scoreTeamA);
     }
-    public void addOnePoint(View view){
+    public void addOnePointA(View view){
         scoreTeamA ++;
         displayForTeamA(scoreTeamA);
+    }
+
+    public void addThreePointsB(View view){
+        scoreTeamB += 3;
+    }
+
+    public void addTwoPointsB(View view){
+        scoreTeamB += 2;
+    }
+
+    public void addOnePointB(View view){
+        scoreTeamB++;
     }
 }
