@@ -45,13 +45,23 @@ public class MainActivity extends AppCompatActivity {
 
     public void addThreePointsB(View view){
         scoreTeamB += 3;
+        displayForTeamB(scoreTeamB);
     }
 
     public void addTwoPointsB(View view){
         scoreTeamB += 2;
+        displayForTeamB(scoreTeamB);
     }
 
     public void addOnePointB(View view){
         scoreTeamB++;
+        displayForTeamB(scoreTeamB);
+    }
+
+    public void reset(View view){
+        scoreTeamA = 0;
+        scoreTeamB = 0;
+        displayForTeamA(scoreTeamA);
+        displayForTeamB(scoreTeamB);
     }
 }
