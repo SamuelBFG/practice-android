@@ -36,17 +36,20 @@ public class MainActivity extends AppCompatActivity {
      * This method is called when the order button is clicked.
      */
     public void submitOrder(View view) {
-        //CheckBox checkboxCream = (CheckBox) findViewById(R.id.checkbox_whipped_cream);
-        //boolean hasWhippedCream = checkboxCream.isChecked();
+        CheckBox checkboxCream = (CheckBox) findViewById(R.id.checkbox_whipped_cream);
+        CheckBox checkboxChocolate = (CheckBox) findViewById(R.id.checkbox_chocolate);
+        boolean hasWhippedCream = checkboxCream.isChecked();
+        boolean hasChocolate = checkboxChocolate.isChecked();
         int price = calculatePrice();
 
-        //String priceMessage = createOrderSummary(price, hasWhippedCream);
-        //displayMessage(priceMessage);
+        String priceMessage = createOrderSummary(price, hasWhippedCream, hasChocolate);
+        displayMessage(priceMessage);
     }
 
-    private String createOrderSummary(int price, boolean addWhippedCream) {
+    private String createOrderSummary(int price, boolean addWhippedCream, boolean addChocolate) {
         String summary = "Name = Samuel Gomes";
         summary += "\nAdd Whipped Cream? " + addWhippedCream;
+        summary += "\nAdd Chocolate? " + addChocolate;
         summary += "\nQuantity: " + quantity;
         summary += "\nTotal: $" + price;
         summary += "\nThank You!";
