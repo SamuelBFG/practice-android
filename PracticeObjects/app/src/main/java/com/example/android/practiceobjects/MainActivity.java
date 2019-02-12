@@ -1,22 +1,30 @@
 package com.example.android.practiceobjects;
 
-import android.graphics.Color;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import org.w3c.dom.Text;
+
 
 public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+    }
 
-        TextView textView = new TextView(this);
-        textView.setText("Samukz!"+"\nIs on"+"\nFire!!");
-        textView.setTextColor(Color.MAGENTA);
-        textView.setTextSize(50);
-        setContentView(textView);
-        textView.setMaxLines(2);
-        //setContentView(R.layout.activity_main);
+    /**
+     * Called when the cookie should be eaten.
+     */
+    public void eatCookie(View view) {
+        ImageView cookieImage = (ImageView) findViewById(R.id.android_cookie_image_view);
+        TextView message = (TextView) findViewById(R.id.status_text_view);
+        message.setText("I'm so full");
+        cookieImage.setImageResource(R.drawable.after_cookie);
+
     }
 }
