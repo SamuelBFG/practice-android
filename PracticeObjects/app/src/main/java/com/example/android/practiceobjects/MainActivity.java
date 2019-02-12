@@ -2,8 +2,8 @@ package com.example.android.practiceobjects;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
@@ -17,14 +17,22 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    /**
-     * Called when the cookie should be eaten.
-     */
-    public void eatCookie(View view) {
-        ImageView cookieImage = (ImageView) findViewById(R.id.android_cookie_image_view);
-        TextView message = (TextView) findViewById(R.id.status_text_view);
-        message.setText("I'm so full");
-        cookieImage.setImageResource(R.drawable.after_cookie);
+    public void printToLogs(View view) {
+        // Find first menu item TextView and print the text to the logs
+        TextView firstMenu = (TextView) findViewById(R.id.menu_item_1);
+        String messageOne = (String) firstMenu.getText();
 
+
+        // Find second menu item TextView and print the text to the logs
+        TextView secondMenu = (TextView) findViewById(R.id.menu_item_2);
+        String messageTwo = (String) secondMenu.getText();
+
+        // Find third menu item TextView and print the text to the logs
+        TextView thirdMenu = (TextView) findViewById(R.id.menu_item_3);
+        String messageThree = (String) thirdMenu.getText();
+
+        Log.i("MainActivity", messageOne);
+        Log.i("MainActivity", messageTwo);
+        Log.i("MainActivity", messageThree);
     }
 }
