@@ -9,10 +9,14 @@
 package com.example.android.justjava;
 
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
@@ -36,18 +40,33 @@ public class MainActivity extends AppCompatActivity {
      * This method is called when the order button is clicked.
      */
     public void submitOrder(View view) {
+        // Whipped Cream?
         CheckBox checkboxCream = (CheckBox) findViewById(R.id.checkbox_whipped_cream);
-        CheckBox checkboxChocolate = (CheckBox) findViewById(R.id.checkbox_chocolate);
         boolean hasWhippedCream = checkboxCream.isChecked();
+        // Chocolate?
+        CheckBox checkboxChocolate = (CheckBox) findViewById(R.id.checkbox_chocolate);
         boolean hasChocolate = checkboxChocolate.isChecked();
-        int price = calculatePrice();
+        // Name input
+        EditText editText = (EditText) findViewById(R.id.name_input);
+        String name = editText.getText().toString(); //Parsing
+        // Price Calculation
+        int price = calculatePrice(hasWhippedCream, hasChocolate);
 
-        String priceMessage = createOrderSummary(price, hasWhippedCream, hasChocolate);
-        displayMessage(priceMessage);
+        String priceMessage = createOrderSummary(price, hasWhippedCream, hasChocolate, name);
+        //displayMessage(priceMessage);
+
+        // Intent to send and email populated
+        Intent intent = new Intent(Intent.ACTION_SENDTO);
+        intent.setData(Uri.parse("mailto:"));
+        intent.putExtra(Intent.EXTRA_SUBJECT, "Just java for " + name);
+        intent.putExtra(Intent.EXTRA_TEXT, priceMessage);
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+        }
     }
 
-    private String createOrderSummary(int price, boolean addWhippedCream, boolean addChocolate) {
-        String summary = "Name = Samuel Gomes";
+    private String createOrderSummary(int price, boolean addWhippedCream, boolean addChocolate, String addName) {
+        String summary = "Name = " + addName;
         summary += "\nAdd Whipped Cream? " + addWhippedCream;
         summary += "\nAdd Chocolate? " + addChocolate;
         summary += "\nQuantity: " + quantity;
@@ -81,9 +100,16 @@ public class MainActivity extends AppCompatActivity {
         orderSummaryTextView.setText(message);
     }
 
-    private int calculatePrice() {
-        int price = quantity * 5;
+    private int calculatePrice(boolean hasCream, boolean hasChocolate) {
+        int basePricing = 0;
+        if (hasCream) {
+            basePricing++;
+        }
+        if (hasChocolate) {
+            basePricing += 2;
+        }
+        int price = quantity * basePricing;
         return price;
     }
-
 }
+
