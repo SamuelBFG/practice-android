@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
     }
 
     /**
@@ -52,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
         // Price Calculation
         int price = calculatePrice(hasWhippedCream, hasChocolate);
 
-        String priceMessage = createOrderSummary(price, hasWhippedCream, hasChocolate, name);
+        String priceMessage = createOrderSummary(name, price, hasWhippedCream, hasChocolate);
         //displayMessage(priceMessage);
 
         // Intent to send and email populated
@@ -65,13 +66,14 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private String createOrderSummary(int price, boolean addWhippedCream, boolean addChocolate, String addName) {
-        String summary = "Name = " + addName;
-        summary += "\nAdd Whipped Cream? " + addWhippedCream;
-        summary += "\nAdd Chocolate? " + addChocolate;
-        summary += "\nQuantity: " + quantity;
+    private String createOrderSummary(String addName, int price, boolean addWhippedCream, boolean addChocolate) {
+        String summary = getString(R.string.name_summary) + " " + addName;
+        //String summary = "Name = " + addName;
+        summary += "\n" + getString(R.string.add_whipped_cream)+ " " + addWhippedCream;
+        summary += "\n" + getString(R.string.add_chocolate) + " " + addChocolate;
+        summary += "\n" + getString(R.string.quantity) + ": " + quantity;
         summary += "\nTotal: $" + price;
-        summary += "\nThank You!";
+        summary += "\n" + getString(R.string.thank_you);
         return summary;
     }
 
@@ -95,10 +97,10 @@ public class MainActivity extends AppCompatActivity {
         quantityTextView.setText("" + numberOfCoffees);
     }
 
-    private void displayMessage(String message) {
-        TextView orderSummaryTextView = (TextView) findViewById(R.id.order_summary_text_view);
-        orderSummaryTextView.setText(message);
-    }
+//    private void displayMessage(String message) {
+//        TextView orderSummaryTextView = (TextView) findViewById(R.id.order_summary_text_view);
+//        orderSummaryTextView.setText(message);
+//    }
 
     private int calculatePrice(boolean hasCream, boolean hasChocolate) {
         int basePricing = 0;

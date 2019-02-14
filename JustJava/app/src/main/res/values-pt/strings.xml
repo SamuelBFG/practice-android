@@ -1,0 +1,12 @@
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_name">Cofforder</string>
+    <string name="name_summary">Nome: <xliff:g id="name" example="Samuel">Samuel</xliff:g></string>
+    <string name="toppings">Coberturas</string>
+    <string name="whipped_cream">Chantilly</string>
+    <string name="quantity">Quantidade</string>
+    <string name="order_summary">Sumário de Pedidos</string>
+    <string name="order">Pedir</string>
+    <string name="add_whipped_cream">Adicionar Chantilly?</string>
+    <string name="add_chocolate">Adicionar Chocolate?</string>
+    <string name="thank_you">Obrigado!</string>
+</resources>
