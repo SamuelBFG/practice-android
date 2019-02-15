@@ -19,6 +19,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import org.w3c.dom.Text;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,15 +30,31 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
+
         // Set the content of the activity to use the activity_main.xml layout file
         setContentView(R.layout.activity_main);
+
+        // Create a instance of NumbersClickListener class
+        // NumbersClickListener clickListener = new NumbersClickListener();
+
+        // Find the view that shows the numbers category
+        TextView numbers = (TextView)findViewById(R.id.numbers);
+
+        // Opens NumbersActivity
+        numbers.setOnClickListener(new NumbersClickListener(){
+
+            public void OnClick(View view){
+                Toast.makeText(view.getContext(),"Open the list of numbers.", Toast.LENGTH_SHORT).show();
+
+                Intent numbersIntent = new Intent(MainActivity.this, NumbersActivity.class);
+
+                startActivity(numbersIntent);
+            }
+        });
     }
 
-    // Opens NumbersActivity
-    public void openNumbersList(View view){
-        Intent i = new Intent(this, NumbersActivity.class);
-        startActivity(i);
-    }
+
 
     // Opens FamilyActivity
     public void openFamilyList(View view){
@@ -49,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // Opens PhrasesActivity
-    public void openPhrasesList(View view0){
+    public void openPhrasesList(View view){
         Intent i = new Intent(this, PhrasesActivity.class);
         startActivity(i);
     }
