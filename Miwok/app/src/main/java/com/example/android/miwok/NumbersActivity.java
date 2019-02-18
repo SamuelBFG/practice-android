@@ -2,11 +2,16 @@ package com.example.android.miwok;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
 import android.util.Log;
+import android.widget.ArrayAdapter;
+import android.widget.GridView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class NumbersActivity extends AppCompatActivity {
 
@@ -29,17 +34,26 @@ public class NumbersActivity extends AppCompatActivity {
         words.add("eight");
         words.add("nine");
         words.add("ten");
+        words.add("eleven");
+        words.add("twelve");
+        words.add("thirteen");
+        words.add("fourteen");
+        words.add("fifteen");
+        words.add("sixteen");
+        words.add("seventeen");
+        words.add("eighteen");
+        words.add("nineteen");
+        words.add("twenty");
+        words.add("twenty-one");
+        words.add("twenty-two");
 
-        // Find the LinearLayout rootView and store it in the variable rootView
-        LinearLayout rootView = (LinearLayout)findViewById(R.id.rootView);
-        // Populate the rootView with multiple TextView wordViews
-        for(int i = 0; i < words.size(); i++){
-            // Create the view wordView
-            TextView wordView = new TextView(this);
-            wordView.setText(words.get(i));
-            // Add the view as a child to the parent view rootView
-            rootView.addView(wordView);
-        }
+
+        ArrayAdapter<String> itemsAdapter =
+                new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, words);
+
+        ListView listView = (ListView) findViewById(R.id.list);
+
+        listView.setAdapter(itemsAdapter);
 
 
 
