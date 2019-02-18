@@ -13,7 +13,7 @@ public class Word {
         return mDefaultTranslation;
     }
 
-    public String getMiworkTranslation(){
+    public String getMiwokTranslation(){
         return mMiwokTranslation;
     }
 }

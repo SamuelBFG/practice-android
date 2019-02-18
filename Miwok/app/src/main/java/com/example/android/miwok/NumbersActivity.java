@@ -37,12 +37,14 @@ public class NumbersActivity extends AppCompatActivity {
 
 
         // Creating a ArrayAdapter instance object
-        ArrayAdapter<Word> itemsAdapter = new ArrayAdapter<Word>(this, R.layout., words);
+        ArrayAdapter<Word> itemsAdapter = new ArrayAdapter<Word>(this, R.layout.list_item, words);
+
+        WordAdapter adapter = new WordAdapter(this, words);
 
         // Creating a ListView object to be instantiated to R.id.list
         ListView listView = (ListView) findViewById(R.id.list);
 
-        listView.setAdapter(itemsAdapter);
+        listView.setAdapter(adapter);
 
 
 
