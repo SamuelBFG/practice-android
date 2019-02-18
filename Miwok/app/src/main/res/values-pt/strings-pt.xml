@@ -1,0 +1,77 @@
+<!-- Copyright (C) 2016 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<resources>
+    <!-- Title for the application. [CHAR LIMIT=12] -->
+    <string name="app_name">Miwok</string>
+
+    <!-- Category name for phrases [CHAR LIMIT=20] -->
+    <string name="category_phrases">Frases</string>
+
+    <!-- Category name for the vocabulary words for colors [CHAR LIMIT=20] -->
+    <string name="category_colors">Cores</string>
+
+    <!-- Category name for the vocabulary words for numbers [CHAR LIMIT=20] -->
+    <string name="category_numbers">Números</string>
+
+    <!-- Category name for the vocabulary words for family members [CHAR LIMIT=20] -->
+    <string name="category_family">Membros da Família</string>
+    <string name="title_activity_numbers">NumbersActivity</string>
+
+    <!-- Numbers -->
+    <string name="one">um</string>
+    <string name="two">dois</string>
+    <string name="three">três</string>
+    <string name="four">quatro</string>
+    <string name="five">cinco</string>
+    <string name="six">seis</string>
+    <string name="seven">sete</string>
+    <string name="eight">oito</string>
+    <string name="nine">nove</string>
+    <string name="ten">dez</string>
+
+    <!-- Colors -->
+    <string name="red">vermelho</string>
+    <string name="green">verde</string>
+    <string name="brown">marrom</string>
+    <string name="gray">cinza</string>
+    <string name="black">preto</string>
+    <string name="white">branco</string>
+    <string name="dusty_yellow">amarelo empoeirado</string>
+    <string name="mustard_yellow">amarelo mustarda</string>
+
+    <!-- Phrases -->
+    <string name="where_are_you_going">Aonde estamos indo?</string>
+    <string name="whats_your_name">Qual o seu nome?</string>
+    <string name="my_name_is">Meu nome é...</string>
+    <string name="how_are_you_feeling">Como está se sentindo?</string>
+    <string name="im_feeling_good">Estou me sentindo bem.</string>
+    <string name="are_you_coming">Você está vindo?</string>
+    <string name="yes_im_coming">Sim, eu estou indo.</string>
+    <string name="im_coming">Estou chegando.</string>
+    <string name="lets_go">Vamos lá.</string>
+    <string name="come_here">Vem aqui.</string>
+
+    <!-- Family Members -->
+    <string name="father">pai</string>
+    <string name="mother">mãe</string>
+    <string name="son">filho</string>
+    <string name="daughter">filha</string>
+    <string name="older_brother">irmão mais velho</string>
+    <string name="younger_brother">irmão mais novo</string>
+    <string name="older_sister">irmã mais velha</string>
+    <string name="younger_sister">irmã mais nova</string>
+    <string name="grandmother">avó</string>
+    <string name="grandfather">avô</string>
+</resources>
