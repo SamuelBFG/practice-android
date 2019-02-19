@@ -2,9 +2,12 @@ package com.example.android.miwok;
 
 import android.app.Activity;
 import android.graphics.Color;
+import android.media.MediaPlayer;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +21,7 @@ import java.util.ArrayList;
 public class WordAdapter extends ArrayAdapter<Word> {
 
     private int mColorResourceID;
+    private MediaPlayer mediaPlayer;
 
     public WordAdapter(Activity context, ArrayList<Word> words, int colorResourceID){
         super(context, 0, words);
@@ -34,11 +38,8 @@ public class WordAdapter extends ArrayAdapter<Word> {
             listItemView = LayoutInflater.from(getContext()).inflate(R.layout.list_item, parent, false);
         }
 
-
-
-
         // Get the {@link Word} object located at this position in the list
-        Word currentWord = getItem(position);
+        final Word currentWord = getItem(position);
 
         // Find the TextView in the list_item.xml layout with the ID version_name
         TextView firstTextView = (TextView) listItemView.findViewById(R.id.default_text_view);
@@ -65,6 +66,16 @@ public class WordAdapter extends ArrayAdapter<Word> {
         } else {
             imageView.setVisibility(View.GONE);
         }
+
+        listItemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mediaPlayer = MediaPlayer.create(getContext(), currentWord.getRawID());
+                mediaPlayer.start();
+                Log.v("WordAdapter", "Current word: " + currentWord);
+            }
+        });
+
 
         return listItemView;
     }
