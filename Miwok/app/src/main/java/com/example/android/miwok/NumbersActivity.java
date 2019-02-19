@@ -33,7 +33,7 @@ public class NumbersActivity extends AppCompatActivity {
         // ArrayAdapter<Word> itemsAdapter = new ArrayAdapter<Word>(this, R.layout.list_item, words);
 
         // Using our CUSTOM <Object>Adapter
-        WordAdapter adapter = new WordAdapter(this, words);
+        WordAdapter adapter = new WordAdapter(this, words, R.color.category_numbers);
 
         // Creating a ListView object to be instantiated to R.id.list
         ListView listView = (ListView) findViewById(R.id.list);
