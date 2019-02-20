@@ -51,4 +51,6 @@ public class Word {
                 ", mImageResourceId=" + mImageResourceID +
                 '}';
     }
+
+
 }
