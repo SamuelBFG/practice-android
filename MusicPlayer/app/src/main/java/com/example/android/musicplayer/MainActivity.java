@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
@@ -31,6 +32,12 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 mediaPlayer.start();
+                mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                    @Override
+                    public void onCompletion(MediaPlayer mp) {
+                        Toast.makeText(MainActivity.this,"Music Stopped.", Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         });
 
@@ -55,5 +62,7 @@ public class MainActivity extends AppCompatActivity {
                 mediaPlayer.seekTo(5000);
             }
         });
+
+
     }
 }
