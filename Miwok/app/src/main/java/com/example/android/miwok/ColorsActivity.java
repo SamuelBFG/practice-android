@@ -1,5 +1,6 @@
 package com.example.android.miwok;
 
+import android.media.AudioManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ListView;
@@ -8,6 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ColorsActivity extends AppCompatActivity {
+
+    private WordAdapter colorsAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,8 +31,15 @@ public class ColorsActivity extends AppCompatActivity {
 
         // Setting the ListView and the WordAdapter
         ListView listView = (ListView) findViewById(R.id.list);
-        WordAdapter colorsAdapter = new WordAdapter(this, colorsList, R.color.category_colors);
+        colorsAdapter = new WordAdapter(this, colorsList, R.color.category_colors);
         listView.setAdapter(colorsAdapter);
+
+    }
+
+    protected void onStop(){
+        //colorsAdapter.releaseMediaPlayer();
+        colorsAdapter.mOnAudioFocusChangeListener.onAudioFocusChange(AudioManager.AUDIOFOCUS_LOSS_TRANSIENT);
+        super.onStop();
 
     }
 }

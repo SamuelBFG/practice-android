@@ -2,6 +2,7 @@ package com.example.android.miwok;
 
 import android.app.Activity;
 import android.graphics.Color;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
@@ -28,6 +29,19 @@ public class WordAdapter extends ArrayAdapter<Word> {
         mColorResourceID = colorResourceID;
     }
 
+    public AudioManager.OnAudioFocusChangeListener mOnAudioFocusChangeListener =
+            new AudioManager.OnAudioFocusChangeListener() {
+                public void onAudioFocusChange(int focusChange) {
+                    if (focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT || focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK) {
+                        mMediaPlayer.pause();
+                        mMediaPlayer.seekTo(0);
+                    } else if (focusChange == AudioManager.AUDIOFOCUS_GAIN) {
+                        mMediaPlayer.start();
+                    } else if (focusChange == AudioManager.AUDIOFOCUS_LOSS) {
+                        releaseMediaPlayer();
+                    }
+                }
+            };
 
     @NonNull
     @Override
@@ -72,11 +86,13 @@ public class WordAdapter extends ArrayAdapter<Word> {
             public void onClick(View view) {
                 releaseMediaPlayer();
                 mMediaPlayer = MediaPlayer.create(getContext(), currentWord.getRawID());
-                mMediaPlayer.start();
+                //mMediaPlayer.start();
+                mOnAudioFocusChangeListener.onAudioFocusChange(AudioManager.AUDIOFOCUS_GAIN);
                 mMediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                     @Override
                     public void onCompletion(MediaPlayer mediaPlayer) {
-                        releaseMediaPlayer();
+                        //releaseMediaPlayer();
+                        mOnAudioFocusChangeListener.onAudioFocusChange(AudioManager.AUDIOFOCUS_LOSS);
                     }
                 });
                 Log.v("WordAdapter", "Current word: " + currentWord);
@@ -90,7 +106,7 @@ public class WordAdapter extends ArrayAdapter<Word> {
     /**
      * Clean up the media player by releasing its resources.
      */
-    private void releaseMediaPlayer() {
+    public void releaseMediaPlayer() {
         // If the media player is not null, then it may be currently playing a sound.
         if (mMediaPlayer != null) {
             // Regardless of the current state of the media player, release its resources
@@ -103,4 +119,5 @@ public class WordAdapter extends ArrayAdapter<Word> {
             mMediaPlayer = null;
         }
     }
+
 }

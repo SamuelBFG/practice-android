@@ -1,5 +1,6 @@
 package com.example.android.miwok;
 
+import android.media.AudioManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
@@ -9,6 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FamilyActivity extends AppCompatActivity {
+
+    private WordAdapter familyAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,8 +32,13 @@ public class FamilyActivity extends AppCompatActivity {
         familyList.add(new Word(getString(R.string.grandfather), "paapa", R.drawable.family_grandfather, R.raw.family_grandfather));
 
         ListView listView = (ListView) findViewById(R.id.list);
-        WordAdapter familyAdapter = new WordAdapter(this, familyList, R.color.category_family);
+        familyAdapter = new WordAdapter(this, familyList, R.color.category_family);
         listView.setAdapter(familyAdapter);
+    }
 
+    protected void onStop(){
+        super.onStop();
+        //familyAdapter.releaseMediaPlayer();
+        familyAdapter.mOnAudioFocusChangeListener.onAudioFocusChange(AudioManager.AUDIOFOCUS_LOSS_TRANSIENT);
     }
 }

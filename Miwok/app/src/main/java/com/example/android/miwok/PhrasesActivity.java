@@ -1,5 +1,6 @@
 package com.example.android.miwok;
 
+import android.media.AudioManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ListView;
@@ -7,6 +8,8 @@ import android.widget.ListView;
 import java.util.ArrayList;
 
 public class PhrasesActivity extends AppCompatActivity {
+
+    private WordAdapter phraseAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,9 +29,14 @@ public class PhrasesActivity extends AppCompatActivity {
         phraseList.add(new Word(getString(R.string.lets_go),"yoowutis", R.raw.phrase_lets_go));
         phraseList.add(new Word(getString(R.string.come_here),"әnni'nem", R.raw.phrase_come_here));
 
-        WordAdapter phraseAdapter = new WordAdapter(this, phraseList, R.color.category_phrases);
+        phraseAdapter = new WordAdapter(this, phraseList, R.color.category_phrases);
         ListView listView = (ListView) findViewById(R.id.list);
         listView.setAdapter(phraseAdapter);
+    }
 
+    protected void onStop(){
+        super.onStop();
+        phraseAdapter.mOnAudioFocusChangeListener.onAudioFocusChange(AudioManager.AUDIOFOCUS_LOSS_TRANSIENT);
+        //phraseAdapter.releaseMediaPlayer();
     }
 }
